@@ -1,1 +1,1 @@
-https://github.com/Amonayami/zakrivayuschiy-teg-f
+https://amonayami.github.io/zakrivayuschiy-teg-f/
