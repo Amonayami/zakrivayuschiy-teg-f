@@ -33,7 +33,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-block-size: 368px;
+  padding-block-start: 128px;
+  padding-block-end: 128px;
   min-inline-size: clamp(375px, 100%, 700px);
   font-family: var(--accent-font), sans-serif;
   text-transform: uppercase;
@@ -51,7 +52,7 @@
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
 }
 
-.section {
+.content {
   min-inline-size: clamp(375px, 100%, 700px);
   max-inline-size: 696px;
 }
@@ -105,6 +106,8 @@
 }
 
 .text {
+  display: grid;
+  gap: 27px;
   text-shadow: 2px -2px 5px rgb(0 0 0 / 0.6);
   line-height: 21px;
   margin-block-start: 28px;
@@ -115,10 +118,6 @@
 
 .paragraph {
   font-size: var(--font-size-l);
-}
-
-.paragraph:first-of-type {
-  padding-block-end: 27px;
 }
 
 .wrap {
@@ -206,7 +205,7 @@
   background-color: var(--white);
 }
 
-.footer {
+.wrap-button-save {
   display: flex;
   justify-content: center;
   margin-block-end: 100px;
@@ -230,17 +229,18 @@ dialog[open] {
   justify-content: center;
   align-items: center;
   inline-size: 357px;
-  block-size: 193px;
+  /* block-size: 193px; */
 }
 
 dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.3);
-  backdrop-filter: blur(2px);
+  background-color: rgb(0 0 0 / 0.75);
 }
 
 .dialog-content {
   display: flex;
   align-items: center;
+  padding-block-start: 30px;
+  padding-block-end: 30px;
 }
 
 .dialog-subject {
@@ -294,7 +294,7 @@ dialog::backdrop {
 
 /* heart animation */
 .like-icon.is-liked .heart {
-  animation: animation-scale 0.3s ease-in 0.1s;
+  animation: animation-scale 0.3s linear 0.1s;
   transform-origin: center;
 }
 
@@ -303,17 +303,17 @@ dialog::backdrop {
 }
 
 .like-icon.is-liked .sparks {
-  animation: animation-sparks 0.3s ease-in 0.3s;
+  animation: animation-sparks 0.3s linear 0.3s;
 }
 
 .like-icon .core {
   fill: transparent;
-  transition: fill 0.3s ease-out 0.1s; /* По тз задержка в 0.3s визуально слишком долго*/
+  transition: fill 0.3s ease-out;
 }
 
 .like-icon .main-body {
   fill: transparent;
-  transition: fill 0.3s ease-out;
+  transition: fill 0.3s ease-out 0.5s;
 }
 
 .like-icon .contour {
@@ -348,9 +348,6 @@ dialog::backdrop {
 
 .like-icon.is-liked .contour {
   fill: var(--heart-sparks-color);
-}
-
-.like-icon:not(.is-liked) .contour {
   transition: fill 0.1s linear;
 }
 
@@ -361,8 +358,9 @@ dialog::backdrop {
   }
 
   .header {
-    min-block-size: 327px;
     inline-size: 100%;
+    padding-block-start: 120px;
+    padding-block-end: 120px;
   }
 
   .watermark {
@@ -370,7 +368,7 @@ dialog::backdrop {
     top: 77px;
   }
 
-  .section {
+  .content {
     inline-size: 100%;
   }
 
