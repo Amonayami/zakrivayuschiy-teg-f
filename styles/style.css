@@ -53,22 +53,23 @@
 }
 
 .content {
+  margin-bottom: 50px;
   min-inline-size: clamp(375px, 100%, 700px);
   max-inline-size: 696px;
 }
 
 .watermark {
   position: absolute;
-  right: 25px;
-  top: 58px;
+  right: 20px;
+  top: 25px;
   font-family: var(--accent-font), sans-serif;
   font-size: 14px;
   mix-blend-mode: hard-light;
   opacity: 0.5;
-  text-shadow: -1px 0 var(--white), 0 1px var(--white), 1px 0 var(--white),
-    0 -1px var(--white);
+  text-shadow: 1px var(--white);
   pointer-events: none;
   user-select: none;
+  z-index: 1;
 }
 
 .watermark-uppercase {
@@ -84,10 +85,9 @@
 }
 
 .card {
-  position: relative;
+  
   border: var(--border);
   background-color: var(--white);
-  margin-block-end: 52px;
 }
 
 .subtitle {
@@ -99,21 +99,27 @@
 }
 
 .image {
+  display: block;
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
   object-position: center;
 }
 
+.image-wrap {
+  position: relative;
+  border: var(--border);
+  block-size: 696px;
+}
+
 .text {
   display: grid;
   gap: 27px;
-  text-shadow: 2px -2px 5px rgb(0 0 0 / 0.6);
   line-height: 21px;
-  margin-block-start: 28px;
-  margin-inline-start: 24px;
-  margin-inline-end: 22px;
-  margin-block-end: 25px;
+  padding-top: 28px;
+  padding-right: 21px;
+  padding-left: 25px;
+  padding-bottom: 27px;
 }
 
 .paragraph {
@@ -164,7 +170,7 @@
   color: var(--white);
 }
 
-.button:focus {
+.button:focus-visible {
   outline: none;
   box-shadow: 2px 2px 0 rgb(0 0 0);
 }
@@ -227,9 +233,9 @@
 dialog[open] {
   display: grid;
   justify-content: center;
+  justify-items: center;
   align-items: center;
   inline-size: 357px;
-  /* block-size: 193px; */
 }
 
 dialog::backdrop {
@@ -239,8 +245,8 @@ dialog::backdrop {
 .dialog-content {
   display: flex;
   align-items: center;
-  padding-block-start: 30px;
-  padding-block-end: 30px;
+  padding-block-start: 17px;
+  padding-block-end: 28px;
 }
 
 .dialog-subject {
@@ -261,6 +267,7 @@ dialog::backdrop {
   inline-size: 293px;
   block-size: 38px;
   text-transform: uppercase;
+  margin-block-end: 12px;
 }
 
 /* Filters */
@@ -308,47 +315,51 @@ dialog::backdrop {
 
 .like-icon .core {
   fill: transparent;
-  transition: fill 0.3s ease-out;
+  transition: fill 0.3s linear 0.03s;
 }
 
 .like-icon .main-body {
   fill: transparent;
-  transition: fill 0.3s ease-out 0.5s;
+  transition: fill 0.3s linear;
 }
 
 .like-icon .contour {
-  transition: fill 0.3s ease-out 0.06s;
+  transition: fill 0.1s linear;
 }
 
 .like-icon:hover .core {
   fill: var(--heart-contour-color);
-  transition: fill 0.3s ease-out;
+  transition: fill 0.3s linear 0.03s;
 }
 
 .like-icon:hover .main-body {
   fill: var(--heart-contour-color);
-  transition: fill 0.3s ease-out 0.05s;
+  transition: fill 0.3s linear 0.05s;
 }
 
 .like-icon:active .core {
   fill: var(--heart-sparks-color);
+  transition: fill 0.3s linear;
 }
 
 .like-icon:active .main-body {
   fill: var(--heart-sparks-color);
+  transition: fill 0.3s linear 0.05s;
 }
 
 .like-icon.is-liked .core {
   fill: var(--heart-sparks-color);
+  transition: fill 0.3s linear;
 }
 
 .like-icon.is-liked .main-body {
   fill: var(--heart-sparks-color);
+  transition: fill 0.3s linear 0.05s
 }
 
 .like-icon.is-liked .contour {
   fill: var(--heart-sparks-color);
-  transition: fill 0.1s linear;
+  transition: fill 0.3s linear 0.06s;
 }
 
 @media (width <= 375px) {
@@ -365,11 +376,15 @@ dialog::backdrop {
 
   .watermark {
     right: 10px;
-    top: 77px;
+    top: 20px;
   }
 
   .content {
     inline-size: 100%;
+  }
+
+  .image-wrap {
+    block-size: 375px;
   }
 
   .subtitle {
@@ -379,14 +394,9 @@ dialog::backdrop {
   }
 
   .text {
-    margin-block-start: 25px;
-    margin-inline-start: 25px;
-    margin-inline-end: 25px;
-    margin-block-end: 0;
-  }
-
-  .card {
-    margin-block-end: 50px;
+    padding-top: 25px;
+    padding-right: 26px;
+    padding-bottom: 0;
   }
 
   .wrap {
@@ -411,4 +421,40 @@ dialog::backdrop {
     margin-inline-end: 0;
     margin-block-end: 10px;
   }
+
+  dialog[open] {
+    inline-size: 341px;
+  }
+  
+  dialog::backdrop {
+    background-color: rgb(0 0 0 / 0.75);
+  }
+  
+  .dialog-content {
+    padding-block-start: 13px;
+    padding-block-end: 28px;
+    padding-inline-start: 33px;
+  }
+  
+  .dialog-subject {
+    inline-size: 234px;
+    font-family: var(--accent-font), sans-serif;
+    font-size: var(--font-size-m);
+    text-transform: uppercase;
+    line-height: 150%;
+  }
+  
+  .dialog-content svg {
+    inline-size: 39px;
+    aspect-ratio: 1;
+    margin-inline-end: 20px;
+  }
+  
+  .button-ok {
+    inline-size: 257px;
+    block-size: 38px;
+    text-transform: uppercase;
+    margin-block-end: 12px;
+  }
+
 }
